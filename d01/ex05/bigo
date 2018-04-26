@@ -1,0 +1,3 @@
+Since we are working with head of the stack and not going through the list:
+O(1) time to perform each operation.
+O(n) space, n being the quantity of energy bars. (Should take in account the space of tanks)

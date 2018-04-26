@@ -1,0 +1,2 @@
+O(n) n being the cities contained in the linked list.
+O(1) space, nothing is malloc'd.

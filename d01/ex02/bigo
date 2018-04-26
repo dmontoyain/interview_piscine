@@ -1,0 +1,2 @@
+O(n) time where n is the total elements in the linked list.
+O(n) space where n is the total elements in the linked list.

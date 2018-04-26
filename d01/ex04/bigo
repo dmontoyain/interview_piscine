@@ -1,0 +1,3 @@
+Since we are not going through the list and just working with the head in the queue: 
+O(1) time for each function/operation.
+O(1) space for each function/operation.

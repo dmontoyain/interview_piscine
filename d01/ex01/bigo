@@ -1,0 +1,2 @@
+O(n) time, n being the count of the elements contained in the linked list being printed.
+O(n) space, n being the count of elements in the linked list. Space depends on the times the recursive function gets called.
