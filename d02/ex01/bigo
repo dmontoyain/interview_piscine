@@ -1,0 +1,2 @@
+O(n^2) time in worst case when all elements are in reverse order.
+O(1) space
