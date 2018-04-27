@@ -6,17 +6,16 @@
 /*--------------------------------
   !! required structure
   --------------------------------*/
-	struct s_stone {
-		int size;
-		struct s_stone *next;
-	};
-
-    struct s_group {
-        int size;
-        int count;
-        struct s_stone **stones;
-        struct s_group *next;
-    };
+	typedef struct    s_stone {
+  int               size;
+  struct s_stone    *next;
+  }                 t_s;
+  typedef struct      s_newstone {
+    int               size;
+    t_s               *startStone;
+    t_s               *lastStone;
+    struct s_newstone *next;
+  }                   t_ns;
 
 
 /*--------------------------------

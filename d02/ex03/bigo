@@ -1,0 +1,2 @@
+O(nlogn) time depending on the amount of the data and the halves it is divided to.
+O(n) space for each recursive call when dividing. O(n^2)This implementation requires more space since I malloc'd the substrings. (Fix to use pointers)

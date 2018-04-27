@@ -1,0 +1,2 @@
+O(log(n)) time when groups of repeated integers still O(n^2) when all are diferent.
+O(log(n)) space depending on the groups created, O(n) when none are repeated.

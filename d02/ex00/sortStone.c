@@ -2,57 +2,73 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void swap(struct s_stone **skp_start, struct s_stone **skp_end, struct s_stone **stone)
+void    swapIt(t_ns *ns)
 {
-    struct s_stone *tmp = (*stone)->next;
-    (*stone)->next = *skp_start;
-    (*skp_end)->next = tmp;
+    int size;
+    t_s *tmp;
+    // Swapping sizes
+    size = ns->size;
+    ns->size = ns->next->size;
+    ns->next->size = size;
+    // Swapping the startStone pointers
+    tmp = ns->startStone;
+    ns->startStone = ns->next->startStone;
+    ns->next->startStone = tmp;
+    // Swapping the lastStone pointers
+    tmp = ns->lastStone;
+    ns->lastStone = ns->next->lastStone;
+    ns->next->lastStone = tmp;
 }
 
-struct s_stone   *skip_dups(struct s_stone *stone)
+t_ns    *buildNewStone(struct s_stone *stone, int *numOfNewStones)
 {
-    int tmp = stone->size;
-    struct s_stone *fake_stone;
-
-    fake_stone = stone;
-    while (fake_stone->next && fake_stone->next->size == tmp)
-        fake_stone = fake_stone->next;
-    return (fake_stone);
-}
-
-void    bubbleSort(struct s_stone **stone)
-{
-    struct s_stone *tmp2, *tmp, *skip;
-    int     swap_f = 0;
-
-    tmp2 = *stone;
-    for (int i = 0; tmp2; i++)
+    t_ns    *new, *ns = NULL;
+    int     lastSize = 0;
+    while (stone)
     {
-        tmp = *stone;
-        while (tmp->next)
+        if (lastSize != stone->size)
         {
-            skip = tmp;
-            tmp = skip_dups(tmp);
-            if (!tmp->next)
-                break ;
-            if (tmp->size > tmp->next->size)
-            {
-                swap_f = 1;
-                swap(&skip, &tmp, &tmp->next);
-            }
-            tmp = tmp->next;
+            if (!(new = malloc(sizeof(t_ns))))
+                return (NULL);
+            new->next = ns ? ns : NULL;
+            ns = new;
+            ns->size = stone->size;
+            ns->startStone = stone;
+            lastSize = stone->size;
+            *numOfNewStones += 1;
         }
-        if (!swap_f)
-            break ;
-        else
-            swap_f = 0;
-        tmp2 = tmp2->next;
+        ns->lastStone = stone;
+        stone = stone->next;
     }
+    return (ns);
 }
-
-void sortStones(struct s_stone **stone)
+void    sortStones(struct s_stone **stone)
 {
-    if (!stone || !*stone)
+    t_ns    *ns, *head;
+    int     numOfNewStones = 0;
+    int     i, j, swapped;
+    if (!stone)
         return ;
-    bubbleSort(stone);
+    head = buildNewStone(*stone, &numOfNewStones);
+    for (i = 0; i < numOfNewStones - 1; i++)
+    {
+        ns = head;
+        swapped = 0;
+        for (j = 0 ; j < numOfNewStones - i - 1 ; j++)
+        {
+            if (ns->size > ns->next->size && (swapped = 1))
+                swapIt(ns);
+            ns = ns->next;
+        }
+        if (swapped == 0)
+            break;
+    }
+    ns = head;
+    while (ns->next)
+    {
+        ns->lastStone->next = ns->next->startStone;
+        ns = ns->next;
+    }
+    ns->lastStone->next = NULL;
+    *stone = head->startStone;
 }
