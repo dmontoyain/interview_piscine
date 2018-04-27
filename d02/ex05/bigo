@@ -1,0 +1,2 @@
+O(log(n)) time in most cases.
+O(log(n)) space proportional to the amount of times the recursive function needs to get called.
