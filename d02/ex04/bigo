@@ -1,0 +1,2 @@
+O(n + k) times n being the elements in the array and k being the range of the data
+O(n) space for the count stack

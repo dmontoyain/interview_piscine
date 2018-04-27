@@ -53,7 +53,6 @@ struct s_player     **mergeSort_(struct s_player **players, int n)
     left = mergeSort_(tmpl, m);
     right = mergeSort_(tmpr, n - m);
     merge(new, left, right);
-    freeall(tmpl, tmpr, left, right);
     free(tmpl);
     free(tmpr);
     return new;

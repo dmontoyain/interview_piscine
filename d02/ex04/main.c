@@ -9,7 +9,7 @@
 int main(void)
 {
 	unsigned char *utensils;
-	int n = 1000;
+	int n = 500;
 	utensils = genRandomUstensils(&n); //if param == 0, the length of the list will be random between 1 and 1 million
 
 	/*-------------------

@@ -10,7 +10,7 @@ void swap(struct s_player **player_a, struct s_player **player_b)
 int partition (struct s_player **players, int low, int high)
 {
     int pivot = players[high]->score;
-    int i = (low - 1);
+    int i = low - 1;
  
     for (int j = low; j <= high- 1; j++)
     {
@@ -37,6 +37,7 @@ void quickSort_(struct s_player **players, int low, int high)
 void quickSort(struct s_player **players)
 {
     int i;
+
     for (i = 0; players[i]; i++){}
     quickSort_(players, 0, i - 1);
 }

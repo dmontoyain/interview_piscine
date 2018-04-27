@@ -1,6 +1,6 @@
 #ifndef HEADER_H
 # define HEADER_H
-
+#define NUMBER_OF_USTENSILS 15
 /*--------------------------------
   !! required structure
   --------------------------------*/

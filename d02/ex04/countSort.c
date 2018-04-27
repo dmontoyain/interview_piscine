@@ -1,22 +1,17 @@
 #include "header.h"
-#include <string.h>
-#define RANGE 255
+#include <string.h>  
 
 void    countSort(unsigned char *utensils, int n)
 {
-    char output[n];
- 
-    int count[RANGE + 1], i;
+    int k, i;
+    int count[NUMBER_OF_USTENSILS + 1];
+    
+    k = 0;
     memset(count, 0, sizeof(count));
-    for(i = 0; utensils[i]; ++i)
+    for(i = 0; i < n; ++i)
         ++count[utensils[i]];
-    for (i = 1; i <= RANGE; ++i)
-        count[i] += count[i-1];
-    for (i = 0; utensils[i]; ++i)
-    {
-        output[count[utensils[i]]-1] = utensils[i];
-        --count[utensils[i]];
-    }
-    for (i = 0; utensils[i]; ++i)
-        utensils[i] = output[i];
+
+    for (i = 0; i <= NUMBER_OF_USTENSILS; i++)
+        while (count[i]-- > 0)
+            utensils[k++] = i;
 }

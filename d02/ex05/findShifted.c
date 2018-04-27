@@ -6,13 +6,16 @@ To return the left-most value found in the shifted arrray
 */
 int findfirst(int *rocks, int found, int value)
 {
-    int i = 1;
-    int newi = found;
+    int i;
+    int newi;
 
+    i = 1;
+    newi = found;
     if (found > 0)
-        while ((found - i) >= 0 && rocks[found - i] == value)
+        while ((found - i) >= 0)
         {
-            newi = found - i;
+            if (rocks[found - i] == value)
+                newi = found - i;
             i++;
         }
     return newi;
@@ -23,7 +26,6 @@ int binarySearch(int *rocks, int left, int right, int value)
     int mid;
     int result;
 
-    printf("left: %d right: %d\n", left, right);
     if (right >= left)
     {
         mid = left + (right - left) / 2;    
