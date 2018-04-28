@@ -1,0 +1,2 @@
+O(n) time, the amount of times going through the tree is equal to the tree height.
+O(n) space due to the recursive calls.
